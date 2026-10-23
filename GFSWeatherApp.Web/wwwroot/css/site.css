@@ -1,0 +1,491 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    background: #0d1b26;
+    font-family: system-ui, Segoe UI, sans-serif;
+    color: #e8f1f5;
+}
+
+
+/* =========================================
+   MAP
+   ========================================= */
+
+#map {
+    position: absolute;
+    inset: 0;
+    background: #0d1b26;
+}
+
+
+/* =========================================
+   WEATHER CANVASES
+   ========================================= */
+
+canvas.ov {
+    position: absolute;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+    z-index: 450;
+}
+
+
+/* =========================================
+   COMMON PANEL
+   ========================================= */
+
+.panel {
+    position: absolute;
+    z-index: 1000;
+    background: rgba(13, 27, 38, 0.88);
+    border: 1px solid #27465a;
+    border-radius: 10px;
+    padding: 10px 14px;
+}
+
+
+/* =========================================
+   TOP PANEL
+   ========================================= */
+
+#title {
+    top: 12px;
+    left: 56px;
+    font-size: 14px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+
+    #title input,
+    #title select {
+        background: #12303f;
+        color: #e8f1f5;
+        border: 1px solid #27465a;
+        border-radius: 6px;
+        padding: 5px;
+    }
+
+
+#go {
+    background: #2ec4b6;
+    color: #062028;
+    border: 0;
+    border-radius: 6px;
+    padding: 7px 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+
+    #go:hover {
+        background: #40d8ca;
+    }
+
+
+/* =========================================
+   MESSAGE
+   ========================================= */
+
+#msg {
+    top: 84px;
+    left: 56px;
+    max-width: 420px;
+    color: #ffb4a2;
+    display: none;
+}
+
+
+/* =========================================
+   LEGEND
+   ========================================= */
+
+#legend {
+    top: 12px;
+    right: 12px;
+    font-size: 12px;
+}
+
+
+    #legend .ramp {
+        height: 10px;
+        width: 200px;
+        border-radius: 3px;
+        margin: 6px 0 2px;
+    }
+
+
+    #legend .ticks {
+        display: flex;
+        justify-content: space-between;
+        width: 200px;
+    }
+
+
+/* =========================================
+   TIMELINE
+   ========================================= */
+
+#bar {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+
+    #bar button {
+        background: #2ec4b6;
+        color: #062028;
+        border: 0;
+        border-radius: 6px;
+        padding: 8px 16px;
+        font-weight: 600;
+        cursor: pointer;
+        min-width: 74px;
+    }
+
+
+        #bar button:hover {
+            background: #40d8ca;
+        }
+
+
+        #bar button:focus-visible,
+        #bar input:focus-visible,
+        #bar select:focus-visible {
+            outline: 2px solid white;
+            outline-offset: 2px;
+        }
+
+
+#slider {
+    flex: 1;
+    min-width: 160px;
+    accent-color: #2ec4b6;
+}
+
+
+#time {
+    min-width: 190px;
+    font-variant-numeric: tabular-nums;
+}
+
+
+/* =========================================
+   SELECT
+   ========================================= */
+
+select {
+    background: #12303f;
+    color: #e8f1f5;
+    border: 1px solid #27465a;
+    border-radius: 6px;
+    padding: 6px;
+}
+
+
+/* =========================================
+   LABEL
+   ========================================= */
+
+label {
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+
+/* =========================================
+   CUSTOMIZATION PANEL
+   ========================================= */
+
+#customPanel {
+    position: absolute;
+    top: 150px;
+    right: 12px;
+    z-index: 1000;
+    width: 280px;
+    max-height: calc(100vh - 230px);
+    overflow-y: auto;
+    padding: 0;
+    background: rgba(13, 27, 38, 0.95);
+    border: 1px solid #27465a;
+    border-radius: 10px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
+}
+
+
+/* =========================================
+   CUSTOM HEADER
+   ========================================= */
+
+.custom-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px;
+    background: rgba(18, 48, 63, 0.95);
+    border-bottom: 1px solid #27465a;
+    border-radius: 10px 10px 0 0;
+}
+
+
+    .custom-header b {
+        font-size: 14px;
+        color: #e8f1f5;
+    }
+
+
+#customToggle {
+    width: 28px;
+    height: 28px;
+    border: 1px solid #27465a;
+    border-radius: 5px;
+    background: #12303f;
+    color: #e8f1f5;
+    font-size: 18px;
+    line-height: 20px;
+    cursor: pointer;
+}
+
+
+    #customToggle:hover {
+        background: #1b4559;
+    }
+
+
+/* =========================================
+   CUSTOM SECTIONS
+   ========================================= */
+
+.custom-section {
+    padding: 11px 12px;
+    border-bottom: 1px solid #27465a;
+}
+
+
+.section-title {
+    margin-bottom: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #2ec4b6;
+}
+
+
+/* =========================================
+   CONTROL ROW
+   ========================================= */
+
+.control-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 8px 0;
+    font-size: 13px;
+    color: #e8f1f5;
+}
+
+
+/* =========================================
+   CONTROL
+   ========================================= */
+
+.control-control {
+    display: block;
+    margin: 11px 0;
+    font-size: 12px;
+    color: #d8e5ea;
+}
+
+
+    /* =========================================
+   RANGE
+   ========================================= */
+
+    .control-control input[type="range"] {
+        width: 100%;
+        margin-top: 6px;
+        accent-color: #2ec4b6;
+    }
+
+
+    /* =========================================
+   COLOR PICKER
+   ========================================= */
+
+    .control-control input[type="color"] {
+        float: right;
+        width: 42px;
+        height: 25px;
+        padding: 0;
+        border: 1px solid #476879;
+        border-radius: 5px;
+        background: transparent;
+        cursor: pointer;
+    }
+
+
+    /* =========================================
+   CUSTOM SELECT
+   ========================================= */
+
+    .control-control select {
+        width: 100%;
+        margin-top: 6px;
+        background: #12303f;
+        color: #e8f1f5;
+        border: 1px solid #27465a;
+        border-radius: 6px;
+        padding: 6px;
+    }
+
+
+    /* =========================================
+   SLIDER VALUE
+   ========================================= */
+
+    .control-control span {
+        float: right;
+        color: #2ec4b6;
+        font-size: 11px;
+        font-variant-numeric: tabular-nums;
+    }
+
+
+/* =========================================
+   CHECKBOX
+   ========================================= */
+
+.control-row input[type="checkbox"] {
+    width: 17px;
+    height: 17px;
+    accent-color: #2ec4b6;
+    cursor: pointer;
+}
+
+
+/* =========================================
+   RESET BUTTON
+   ========================================= */
+
+.reset-btn {
+    width: calc(100% - 24px);
+    margin: 12px;
+    padding: 8px;
+    background: #12303f;
+    color: #e8f1f5;
+    border: 1px solid #27465a;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+
+    .reset-btn:hover {
+        background: #1b4559;
+        border-color: #2ec4b6;
+    }
+
+
+/* =========================================
+   CUSTOM SCROLLBAR
+   ========================================= */
+
+#customPanel::-webkit-scrollbar {
+    width: 6px;
+}
+
+
+#customPanel::-webkit-scrollbar-track {
+    background: #0d1b26;
+}
+
+
+#customPanel::-webkit-scrollbar-thumb {
+    background: #27465a;
+    border-radius: 5px;
+}
+
+
+    #customPanel::-webkit-scrollbar-thumb:hover {
+        background: #2ec4b6;
+    }
+
+
+/* =========================================
+   POPUP
+   ========================================= */
+
+.weather-popup {
+    min-width: 260px;
+    font-family: system-ui, Segoe UI, sans-serif;
+    line-height: 1.6;
+}
+
+
+.weather-popup-title {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+
+.weather-popup-subtitle {
+    color: #666;
+    font-size: 12px;
+}
+
+
+.weather-popup hr {
+    border: 0;
+    border-top: 1px solid #ddd;
+    margin: 7px 0;
+}
+
+
+/* =========================================
+   LEAFLET ZOOM
+   ========================================= */
+
+.leaflet-control-zoom {
+    margin-top: 12px !important;
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 700px) {
+
+    #customPanel {
+        top: 125px;
+        right: 8px;
+        width: 250px;
+        max-height: 55vh;
+    }
+
+
+    #title {
+        left: 45px;
+        right: 8px;
+    }
+
+
+    #legend {
+        top: 105px;
+        right: 8px;
+    }
+
+
+    #time {
+        min-width: 150px;
+    }
+}

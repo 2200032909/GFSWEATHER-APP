@@ -1,0 +1,405 @@
+﻿@{
+    ViewData["Title"] = "GFS Rain and Wind";
+}
+
+<div id="map"></div>
+
+<!-- =========================================
+     TOP CONTROL PANEL
+     ========================================= -->
+<div class="panel" id="title">
+
+    <b>GFS 0.25</b>
+
+    <span id="run"></span>
+
+    <input type="date"
+           id="date"
+           aria-label="Run date">
+
+    <select id="cycle"
+            aria-label="Run cycle">
+
+        <option value="">Latest run</option>
+        <option value="00">00</option>
+        <option value="06">06</option>
+        <option value="12">12</option>
+        <option value="18">18</option>
+
+    </select>
+
+    <button id="go">
+        Download and build
+    </button>
+
+    <span id="st"></span>
+
+</div>
+
+
+<!-- =========================================
+     MESSAGE
+     ========================================= -->
+<div class="panel"
+     id="msg">
+</div>
+
+
+<!-- =========================================
+     RAIN LEGEND
+     ========================================= -->
+<div class="panel"
+     id="legend">
+
+    <b>Rain per hour (mm)</b>
+
+    <div class="ramp"
+         id="ramp">
+    </div>
+
+    <div class="ticks">
+        <span>0.1</span>
+        <span>2.5</span>
+        <span>10</span>
+        <span>40+</span>
+    </div>
+
+</div>
+
+
+<!-- =========================================
+     MAP CUSTOMIZATION
+     ========================================= -->
+<div class="panel"
+     id="customPanel">
+
+    <div class="custom-header">
+
+        <b>
+            ⚙ Map Customization
+        </b>
+
+        <button id="customToggle"
+                title="Collapse">
+
+            −
+
+        </button>
+
+    </div>
+
+
+    <div id="customBody">
+
+        <!-- =====================================
+             RAIN SETTINGS
+             ===================================== -->
+        <div class="custom-section">
+
+            <div class="section-title">
+                🌧 Rain
+            </div>
+
+
+            <label class="control-row">
+
+                <span>
+                    Show Rain
+                </span>
+
+                <input type="checkbox"
+                       id="customRain"
+                       checked>
+
+            </label>
+
+
+            <label class="control-control">
+
+                Rain Opacity
+
+                <input type="range"
+                       id="rainOpacity"
+                       min="10"
+                       max="100"
+                       value="100"
+                       step="5">
+
+                <span id="rainOpacityValue">
+                    100%
+                </span>
+
+            </label>
+
+
+            <label class="control-control">
+
+                Rain Threshold
+
+                <input type="range"
+                       id="rainThreshold"
+                       min="0"
+                       max="5"
+                       value="0.1"
+                       step="0.1">
+
+                <span id="rainThresholdValue">
+                    0.1 mm
+                </span>
+
+            </label>
+
+        </div>
+
+
+        <!-- =====================================
+             WIND SETTINGS
+             ===================================== -->
+        <div class="custom-section">
+
+            <div class="section-title">
+                💨 Wind
+            </div>
+
+
+            <label class="control-row">
+
+                <span>
+                    Show Wind
+                </span>
+
+                <input type="checkbox"
+                       id="customWind"
+                       checked>
+
+            </label>
+
+
+            <label class="control-control">
+
+                Wind Color
+
+                <input type="color"
+                       id="windColor"
+                       value="#0a236e">
+
+            </label>
+
+
+            <label class="control-control">
+
+                Particle Size
+
+                <input type="range"
+                       id="windSize"
+                       min="0.5"
+                       max="5"
+                       value="1.3"
+                       step="0.1">
+
+                <span id="windSizeValue">
+                    1.3
+                </span>
+
+            </label>
+
+
+            <label class="control-control">
+
+                Particle Speed
+
+                <input type="range"
+                       id="windSpeed"
+                       min="0.1"
+                       max="2"
+                       value="0.35"
+                       step="0.05">
+
+                <span id="windSpeedValue">
+                    0.35
+                </span>
+
+            </label>
+
+
+            <label class="control-control">
+
+                Trail Length
+
+                <input type="range"
+                       id="windTrail"
+                       min="1"
+                       max="20"
+                       value="8"
+                       step="1">
+
+                <span id="windTrailValue">
+                    8
+                </span>
+
+            </label>
+
+
+            <label class="control-control">
+
+                Particles
+
+                <input type="range"
+                       id="particleCount"
+                       min="100"
+                       max="2000"
+                       value="700"
+                       step="100">
+
+                <span id="particleCountValue">
+                    700
+                </span>
+
+            </label>
+
+
+            <label class="control-control">
+
+                Wind Opacity
+
+                <input type="range"
+                       id="windOpacity"
+                       min="10"
+                       max="100"
+                       value="90"
+                       step="5">
+
+                <span id="windOpacityValue">
+                    90%
+                </span>
+
+            </label>
+
+        </div>
+
+
+        <!-- =====================================
+             WIND COLOR MODE
+             ===================================== -->
+        <div class="custom-section">
+
+            <div class="section-title">
+                🎨 Wind Visualization
+            </div>
+
+
+            <label class="control-control">
+
+                Color Mode
+
+                <select id="windColorMode">
+
+                    <option value="single">
+                        Single Color
+                    </option>
+
+                    <option value="speed">
+                        Speed Based
+                    </option>
+
+                </select>
+
+            </label>
+
+        </div>
+
+
+        <!-- =====================================
+             RESET
+             ===================================== -->
+        <button id="resetCustomization"
+                class="reset-btn">
+
+            Reset Defaults
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================
+     TIMELINE
+     ========================================= -->
+<div class="panel"
+     id="bar">
+
+    <button id="play">
+        Play
+    </button>
+
+
+    <input id="slider"
+           type="range"
+           min="0"
+           max="0"
+           value="0"
+           aria-label="Forecast hour">
+
+
+    <span id="time"></span>
+
+
+    <label>
+
+        Speed
+
+        <select id="speed">
+
+            <option value="900">
+                Slow
+            </option>
+
+            <option value="450"
+                    selected>
+
+                Normal
+
+            </option>
+
+            <option value="200">
+                Fast
+            </option>
+
+        </select>
+
+    </label>
+
+
+    <label>
+
+        <input type="checkbox"
+               id="tRain"
+               checked>
+
+        Rain
+
+    </label>
+
+
+    <label>
+
+        <input type="checkbox"
+               id="tWind"
+               checked>
+
+        Wind
+
+    </label>
+
+</div>
+
+
+@section Scripts {
+
+    <script src="~/js/map.js"
+            asp-append-version="true">
+    </script>
+
+}
